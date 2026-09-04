@@ -5,4 +5,1072 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>InternPulse | Warm Business Opportunities & Alumni Network</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #fcfbf9;
+            --bg-surface: #ffffff;
+            --bg-subtle: #f4f0ea;
+            --border-color: #e2dacd;
+            --border-focus: #c5b8a5;
+            
+            --text-main: #2d2926;
+            --text-muted: #6e675f;
+            --text-light: #948d83;
+
+            --brand-primary: #a35d38;
+            --brand-hover: #8a4d2d;
+            --brand-soft: #f7ede6;
+            
+            --calpoly-green: #154734;
+            --calpoly-gold: #c69214;
+            --calpoly-bg: #edf4f0;
+
+            --accent-blue: #3b6275;
+            --accent-purple: #6a526e;
+            --accent-amber: #8a6229;
+
+            --shadow-sm: 0 2px 4px rgba(45, 41, 38, 0.03);
+            --shadow-md: 0 6px 16px rgba(45, 41, 38, 0.06);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: var(--bg-surface);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1350px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--brand-primary);
+            letter-spacing: -0.02em;
+        }
+
+        .logo span {
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        .user-context-tag {
+            background: var(--calpoly-bg);
+            border: 1px solid var(--calpoly-green);
+            color: var(--calpoly-green);
+            padding: 0.3rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        nav {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        nav button {
+            background: none;
+            border: 1px solid transparent;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            border-radius: var(--radius-sm);
+            transition: all 0.2s ease;
+        }
+
+        nav button:hover {
+            color: var(--text-main);
+            background-color: var(--bg-subtle);
+        }
+
+        nav button.active {
+            color: var(--brand-primary);
+            background-color: var(--brand-soft);
+            border-color: rgba(163, 93, 56, 0.2);
+        }
+
+        .main-layout {
+            max-width: 1350px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            display: grid;
+            grid-template-columns: 310px 1fr;
+            gap: 2rem;
+            flex: 1;
+            width: 100%;
+        }
+
+        .sidebar {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            height: fit-content;
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 90px;
+        }
+
+        .sidebar-title {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            color: var(--text-main);
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .filter-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .filter-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--text-muted);
+            margin-bottom: 0.4rem;
+        }
+
+        select, input[type="text"] {
+            width: 100%;
+            padding: 0.65rem 0.8rem;
+            background: var(--bg-main);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            color: var(--text-main);
+            font-size: 0.875rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        select:focus, input[type="text"]:focus {
+            border-color: var(--brand-primary);
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.875rem;
+            color: var(--text-main);
+            cursor: pointer;
+        }
+
+        .checkbox-item input {
+            accent-color: var(--brand-primary);
+            width: 16px;
+            height: 16px;
+        }
+
+        .notify-card {
+            background: var(--calpoly-bg);
+            border: 1px solid var(--calpoly-green);
+            border-radius: var(--radius-sm);
+            padding: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .notify-card h4 {
+            font-size: 0.875rem;
+            color: var(--calpoly-green);
+            margin-bottom: 0.3rem;
+            font-weight: 700;
+        }
+
+        .notify-card p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .btn-notify {
+            width: 100%;
+            padding: 0.5rem;
+            background: var(--calpoly-green);
+            color: #ffffff;
+            font-weight: 600;
+            border: none;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+
+        .btn-notify:hover {
+            opacity: 0.9;
+        }
+
+        .feed-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.25rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .feed-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        .feed-count {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+
+        .sorting-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            background: var(--bg-surface);
+            padding: 0.4rem 0.8rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+        }
+
+        .sorting-controls select {
+            width: auto;
+            padding: 0.2rem 0.4rem;
+            border: none;
+            background: transparent;
+            font-weight: 600;
+            color: var(--text-main);
+            cursor: pointer;
+        }
+
+        .card-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+        }
+
+        .company-badge-wrap {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+        }
+
+        .company-logo {
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-sm);
+            background: var(--bg-subtle);
+            color: var(--brand-primary);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .role-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .company-name {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .time-badge {
+            font-size: 0.75rem;
+            background: var(--bg-subtle);
+            color: var(--text-muted);
+            padding: 0.25rem 0.6rem;
+            border-radius: 999px;
+            font-weight: 600;
+            border: 1px solid var(--border-color);
+        }
+
+        .time-badge.recent {
+            background: #eef7f2;
+            color: var(--calpoly-green);
+            border-color: #c2e2d0;
+        }
+
+        .pill-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.1rem;
+        }
+
+        .pill {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            background: var(--bg-main);
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            font-weight: 500;
+        }
+
+        .pill.field {
+            background: var(--brand-soft);
+            color: var(--brand-primary);
+            border-color: rgba(163, 93, 56, 0.2);
+            font-weight: 600;
+        }
+
+        .pill.rolling {
+            background: #fdf3e7;
+            color: var(--accent-amber);
+            border-color: rgba(138, 98, 41, 0.2);
+        }
+
+        .breakdown-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 0.85rem;
+            background: var(--bg-main);
+            padding: 1rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+            margin-bottom: 1.1rem;
+        }
+
+        .breakdown-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .breakdown-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            color: var(--text-light);
+            margin-bottom: 0.15rem;
+        }
+
+        .breakdown-val {
+            font-size: 0.85rem;
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        .culture-text {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-bottom: 1.1rem;
+            padding-left: 0.85rem;
+            border-left: 3px solid var(--brand-primary);
+        }
+
+        .networking-box {
+            background: #faf8f5;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            padding: 0.85rem 1rem;
+            margin-bottom: 1.1rem;
+        }
+
+        .networking-header {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--calpoly-green);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .network-links {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .network-tag {
+            font-size: 0.8rem;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            padding: 0.35rem 0.7rem;
+            border-radius: 6px;
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            transition: all 0.2s;
+        }
+
+        .network-tag:hover {
+            border-color: var(--brand-primary);
+            color: var(--brand-primary);
+        }
+
+        .network-tag span.badge {
+            font-size: 0.65rem;
+            background: var(--calpoly-green);
+            color: white;
+            padding: 0.1rem 0.35rem;
+            border-radius: 4px;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 0.85rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 0.6rem;
+        }
+
+        .btn {
+            padding: 0.55rem 1.1rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            border: 1px solid transparent;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--brand-primary);
+            color: #ffffff;
+        }
+
+        .btn-primary:hover {
+            background: var(--brand-hover);
+        }
+
+        .btn-outline {
+            background: var(--bg-surface);
+            color: var(--text-main);
+            border-color: var(--border-color);
+        }
+
+        .btn-outline:hover {
+            background: var(--bg-subtle);
+        }
+
+        .tracker-table-wrap {
+            background: var(--bg-surface);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            overflow-x: auto;
+            box-shadow: var(--shadow-sm);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background: var(--bg-main);
+            color: var(--text-muted);
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .status-select {
+            padding: 0.4rem 0.6rem;
+            font-size: 0.8rem;
+            background: var(--bg-main);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        .empty-state {
+            padding: 4rem 2rem;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 960px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="brand-group">
+                <div class="logo">InternPulse <span>Business</span></div>
+                <div class="user-context-tag">
+                    🎓 Cal Poly SLO Network Linked (naominisenboim)
+                </div>
+            </div>
+            <nav>
+                <button id="nav-find" class="active" onclick="switchTab('find')">All Opportunities</button>
+                <button id="nav-tracker" onclick="switchTab('tracker')">Application Tracker (<span id="saved-count">0</span>)</button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="main-layout">
+        <aside class="sidebar">
+            <div class="sidebar-title">Filter Opportunities</div>
+
+            <div class="filter-group">
+                <label>Keyword Search</label>
+                <input type="text" id="search-input" placeholder="Search title, company, skills..." oninput="applyFiltersAndSort()">
+            </div>
+
+            <div class="filter-group">
+                <label>Location / Region</label>
+                <select id="location-select" onchange="applyFiltersAndSort()">
+                    <option value="all">All Locations</option>
+                    <option value="ca-bay">San Francisco / Bay Area, CA</option>
+                    <option value="ca-socal">Los Angeles / Orange County, CA</option>
+                    <option value="ny">New York, NY</option>
+                    <option value="chicago">Chicago, IL</option>
+                    <option value="remote">Remote / Flexible</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>Business Discipline</label>
+                <div class="checkbox-group">
+                    <label class="checkbox-item">
+                        <input type="checkbox" value="consulting" class="field-filter" checked onchange="applyFiltersAndSort()"> Consulting & Strategy
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" value="sales" class="field-filter" checked onchange="applyFiltersAndSort()"> Sales B2B (Tech/Fintech/Finance)
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" value="cre" class="field-filter" checked onchange="applyFiltersAndSort()"> Commercial Real Estate
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" value="fintech" class="field-filter" checked onchange="applyFiltersAndSort()"> Corporate Finance & FinTech
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" value="marketing" class="field-filter" checked onchange="applyFiltersAndSort()"> Business Dev & Brand Operations
+                    </label>
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <label>Date Posted / Recency</label>
+                <select id="recency-select" onchange="applyFiltersAndSort()">
+                    <option value="all">All Active Postings</option>
+                    <option value="1">Past 24 Hours</option>
+                    <option value="3">Past 3 Days</option>
+                    <option value="7">Past 1 Week</option>
+                    <option value="14">Past 2 Weeks</option>
+                    <option value="30">Past 1 Month</option>
+                    <option value="42">Past 6 Weeks</option>
+                    <option value="60">Past 2 Months</option>
+                    <option value="rolling">Rolling Basis / Still Open</option>
+                </select>
+            </div>
+
+            <div class="notify-card">
+                <h4>🔔 Cal Poly Role Alerts</h4>
+                <p>Receive notifications when new business roles with Cal Poly alumni connections are posted.</p>
+                <button class="btn-notify" onclick="alert('Alert preferences saved for LinkedIn user naominisenboim!')">Enable Direct Alerts</button>
+            </div>
+        </aside>
+
+        <main id="main-content">
+            <section id="tab-find">
+                <div class="feed-header">
+                    <div>
+                        <span class="feed-title">Live Summer Business Opportunities</span>
+                        <span class="feed-count" id="result-count">(0 postings found)</span>
+                    </div>
+                    <div class="sorting-controls">
+                        <span>Sort by:</span>
+                        <select id="sort-select" onchange="applyFiltersAndSort()">
+                            <option value="recency-desc">Date Posted (Newest First)</option>
+                            <option value="recency-asc">Date Posted (Oldest First)</option>
+                            <option value="location">Location (A-Z)</option>
+                            <option value="company">Company Name (A-Z)</option>
+                            <option value="deadline">Application Deadline</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="card-list" id="postings-container">
+                    </div>
+            </section>
+
+            <section id="tab-tracker" style="display: none;">
+                <div class="feed-header">
+                    <div class="feed-title">My Application & Networking Tracker</div>
+                </div>
+                <div class="tracker-table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Role & Company</th>
+                                <th>Discipline</th>
+                                <th>Deadline</th>
+                                <th>Application Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tracker-table-body">
+                            </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Broad Business Opportunities Database evaluated against custom criteria
+        const postingsData = [
+            {
+                id: "1",
+                company: "PIMCO",
+                logo: "PM",
+                role: "2027 Summer Real Estate & Alternatives Analyst",
+                field: "cre",
+                fieldLabel: "Commercial Real Estate",
+                location: "Newport Beach, CA",
+                locCode: "ca-socal",
+                daysAgo: 2,
+                isRolling: true,
+                deadline: "Rolling (Early Review)",
+                comp: "$43.26 / hr (~$90k annualized) + Relocation Bonus",
+                reputation: "World-class Global Fixed Income & Real Estate Asset Manager",
+                scalability: "High — Direct path to institutional real estate portfolio management",
+                culture: "Analytical, research-intensive, meritocratic, collaborative trading floor.",
+                applyUrl: "https://www.pimco.com/en-us/careers",
+                contacts: [
+                    { name: "Cal Poly Alumni Network", title: "PIMCO Finance & Real Estate Circle", link: "https://www.linkedin.com/in/naominisenboim", badge: "Cal Poly Connection" },
+                    { name: "Campus Recruiting Lead", title: "Early Career Talent Specialist", link: "https://www.linkedin.com/in/naominisenboim", badge: "Recruiter" }
+                ]
+            },
+            {
+                id: "2",
+                company: "Stripe",
+                logo: "ST",
+                role: "B2B Sales Development & Account Exec Intern",
+                field: "sales",
+                fieldLabel: "Sales B2B (Fintech)",
+                location: "San Francisco, CA",
+                locCode: "ca-bay",
+                daysAgo: 1,
+                isRolling: true,
+                deadline: "Rolling Basis",
+                comp: "$48.00 - $54.00 / hr",
+                reputation: "Gold standard in global financial infrastructure & payment tech",
+                scalability: "Extremely High — Premier SaaS/Fintech sales training ground",
+                culture: "Written clarity, high ownership, fast iteration, developer-focused ethos.",
+                applyUrl: "https://stripe.com/jobs",
+                contacts: [
+                    { name: "Former Cal Poly Intern", title: "B2B Sales Development Rep", link: "https://www.linkedin.com/in/naominisenboim", badge: "Student Peer" },
+                    { name: "Stripe Business Recruiting", title: "University Talent Lead", link: "https://www.linkedin.com/in/naominisenboim", badge: "LinkedIn 2nd" }
+                ]
+            },
+            {
+                id: "3",
+                company: "CBRE",
+                logo: "CB",
+                role: "Commercial Real Estate Brokerage & Capital Markets Summer Intern",
+                field: "cre",
+                fieldLabel: "Commercial Real Estate",
+                location: "Los Angeles, CA",
+                locCode: "ca-socal",
+                daysAgo: 6,
+                isRolling: false,
+                deadline: "November 15, 2026",
+                comp: "$22.00 - $28.00 / hr",
+                reputation: "#1 Worldwide Commercial Real Estate Services Brand",
+                scalability: "High — Top-tier deal flow across industrial, office, & retail assets",
+                culture: "Client-centric, competitive deal teams, relationship & market-driven.",
+                applyUrl: "https://www.cbre.com/careers",
+                contacts: [
+                    { name: "Cal Poly SLO CRE Club Alum", title: "Associate Broker @ CBRE", link: "https://www.linkedin.com/in/naominisenboim", badge: "Cal Poly Alum" }
+                ]
+            },
+            {
+                id: "4",
+                company: "Bain & Company",
+                logo: "BC",
+                role: "Associate Consultant Intern (ACI)",
+                field: "consulting",
+                fieldLabel: "Consulting & Strategy",
+                location: "San Francisco, CA",
+                locCode: "ca-bay",
+                daysAgo: 12,
+                isRolling: false,
+                deadline: "September 28, 2026",
+                comp: "$52.00 / hr + Sign-on Bonus",
+                reputation: "Top-3 Global Strategy Consulting Firm (MBB)",
+                scalability: "Exceptional — Opens doors to PE, tech strategy, and executive tracks",
+                culture: "Supportive 'Bainie' spirit, structured mentorship, high analytical rigor.",
+                applyUrl: "https://www.bain.com/careers",
+                contacts: [
+                    { name: "Cal Poly Business Alum", title: "Strategy Consultant @ Bain", link: "https://www.linkedin.com/in/naominisenboim", badge: "Cal Poly Alum" }
+                ]
+            },
+            {
+                id: "5",
+                company: "Procter & Gamble (P&G)",
+                logo: "PG",
+                role: "B2B Sales & Account Management Summer Intern",
+                field: "sales",
+                fieldLabel: "Sales B2B (Consumer Goods)",
+                location: "Remote / Multi-Location",
+                locCode: "remote",
+                daysAgo: 22,
+                isRolling: true,
+                deadline: "Rolling Basis",
+                comp: "$32.00 - $42.00 / hr",
+                reputation: "World leader in brand management and structured sales leadership",
+                scalability: "High — Renowned training program for general management & B2B sales",
+                culture: "Leadership-focused, clear career ladders, data-driven brand strategies.",
+                applyUrl: "https://www.pgcareers.com",
+                contacts: [
+                    { name: "Sales Account Executive", title: "Cal Poly Class of '24 Alum", link: "https://www.linkedin.com/in/naominisenboim", badge: "Cal Poly Alum" }
+                ]
+            },
+            {
+                id: "6",
+                company: "Invesco",
+                logo: "IV",
+                role: "Real Estate Private Equity & Valuation Summer Analyst",
+                field: "fintech",
+                fieldLabel: "Corporate Finance & Real Estate",
+                location: "San Francisco, CA",
+                locCode: "ca-bay",
+                daysAgo: 38,
+                isRolling: true,
+                deadline: "Rolling (Apply ASAP)",
+                comp: "$40.00 / hr",
+                reputation: "Major Global Independent Investment Management Firm",
+                scalability: "Strong — Direct experience underwriting institutional property equity",
+                culture: "Collaborative investment committees, research-oriented, disciplined growth.",
+                applyUrl: "https://www.invesco.com/corporate/careers",
+                contacts: [
+                    { name: "Invesco University Talent", title: "Campus Recruiter", link: "https://www.linkedin.com/in/naominisenboim", badge: "LinkedIn Connection" }
+                ]
+            },
+            {
+                id: "7",
+                company: "L'Oréal",
+                logo: "LO",
+                role: "Commercial Development & Brand Operations Intern",
+                field: "marketing",
+                fieldLabel: "Business Dev & Operations",
+                location: "New York, NY",
+                locCode: "ny",
+                daysAgo: 50,
+                isRolling: false,
+                deadline: "October 30, 2026",
+                comp: "$28.00 - $30.00 / hr + Housing Allowance",
+                reputation: "Global #1 Beauty Tech & FMCG Conglomerate",
+                scalability: "High — Fast-track rotational graduate management opportunities",
+                culture: "Entrepreneurial, highly energetic, design and consumer-centric.",
+                applyUrl: "https://careers.loreal.com",
+                contacts: [
+                    { name: "Brand Manager", title: "Cal Poly Marketing/Business Alum", link: "https://www.linkedin.com/in/naominisenboim", badge: "Cal Poly Alum" }
+                ]
+            }
+        ];
+
+        let savedPostings = JSON.parse(localStorage.getItem('intern_tracker_v2')) || {};
+
+        function applyFiltersAndSort() {
+            const searchVal = document.getElementById('search-input').value.toLowerCase();
+            const locVal = document.getElementById('location-select').value;
+            const recencyVal = document.getElementById('recency-select').value;
+            const sortVal = document.getElementById('sort-select').value;
+
+            const checkedFields = Array.from(document.querySelectorAll('.field-filter:checked')).map(cb => cb.value);
+
+            // Filter logic
+            let filtered = postingsData.filter(item => {
+                const matchesSearch = item.role.toLowerCase().includes(searchVal) || item.company.toLowerCase().includes(searchVal);
+                const matchesLoc = locVal === 'all' || item.locCode === locVal;
+                const matchesField = checkedFields.includes(item.field);
+
+                let matchesRecency = true;
+                if (recencyVal === 'rolling') {
+                    matchesRecency = item.isRolling;
+                } else if (recencyVal !== 'all') {
+                    const daysLimit = parseInt(recencyVal);
+                    matchesRecency = item.daysAgo <= daysLimit;
+                }
+
+                return matchesSearch && matchesLoc && matchesField && matchesRecency;
+            });
+
+            // Sort logic
+            filtered.sort((a, b) => {
+                if (sortVal === 'recency-desc') return a.daysAgo - b.daysAgo;
+                if (sortVal === 'recency-asc') return b.daysAgo - a.daysAgo;
+                if (sortVal === 'location') return a.location.localeCompare(b.location);
+                if (sortVal === 'company') return a.company.localeCompare(b.company);
+                if (sortVal === 'deadline') return a.deadline.localeCompare(b.deadline);
+                return 0;
+            });
+
+            document.getElementById('result-count').innerText = `(${filtered.length} postings found)`;
+            renderPostings(filtered);
+        }
+
+        function renderPostings(data) {
+            const container = document.getElementById('postings-container');
+            container.innerHTML = '';
+
+            if (data.length === 0) {
+                container.innerHTML = `<div class="empty-state">No listings matched your criteria. Try adjusting the recency filter or selecting additional business disciplines.</div>`;
+                return;
+            }
+
+            data.forEach(item => {
+                const isSaved = !!savedPostings[item.id];
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-header">
+                        <div class="company-badge-wrap">
+                            <div class="company-logo">${item.logo}</div>
+                            <div>
+                                <div class="role-title">${item.role}</div>
+                                <div class="company-name">${item.company} • ${item.location}</div>
+                            </div>
+                        </div>
+                        <div class="time-badge ${item.daysAgo <= 7 ? 'recent' : ''}">
+                            ${item.daysAgo === 1 ? 'Posted Yesterday' : `Posted ${item.daysAgo} days ago`}
+                        </div>
+                    </div>
+
+                    <div class="pill-container">
+                        <span class="pill field">${item.fieldLabel}</span>
+                        ${item.isRolling ? `<span class="pill rolling">⚡ Rolling Basis</span>` : ''}
+                        <span class="pill">🗓 Deadline: ${item.deadline}</span>
+                    </div>
+
+                    <div class="breakdown-grid">
+                        <div class="breakdown-item">
+                            <span class="breakdown-label">Est. Compensation</span>
+                            <span class="breakdown-val">${item.comp}</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="breakdown-label">Company Reputation</span>
+                            <span class="breakdown-val">${item.reputation}</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="breakdown-label">Scalability & Mobility</span>
+                            <span class="breakdown-val">${item.scalability}</span>
+                        </div>
+                    </div>
+
+                    <div class="culture-text">
+                        <strong>Culture Breakdown:</strong> ${item.culture}
+                    </div>
+
+                    <div class="networking-box">
+                        <div class="networking-header">
+                            👥 Cal Poly & LinkedIn Networking Opportunities (Connected via naominisenboim):
+                        </div>
+                        <div class="network-links">
+                            ${item.contacts.map(c => `
+                                <a href="${c.link}" target="_blank" class="network-tag">
+                                    <span>✉ ${c.name} (${c.title})</span>
+                                    <span class="badge">${c.badge}</span>
+                                </a>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="btn-group">
+                            <a href="${item.applyUrl}" target="_blank" class="btn btn-primary">Apply Directly ↗</a>
+                            <button class="btn btn-outline" onclick="toggleSave('${item.id}')">
+                                ${isSaved ? '✓ Saved to Tracker' : '+ Save Opportunity'}
+                            </button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function renderTracker() {
+            const tbody = document.getElementById('tracker-table-body');
+            tbody.innerHTML = '';
+
+            const keys = Object.keys(savedPostings);
+            document.getElementById('saved-count').innerText = keys.length;
+
+            if (keys.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" class="empty-state">Your tracker is empty. Click "+ Save Opportunity" on any posting to manage your applications here.</td></tr>`;
+                return;
+            }
+
+            keys.forEach(id => {
+                const item = postingsData.find(i => i.id === id);
+                if (!item) return;
+
+                const status = savedPostings[id].status || 'Saved';
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>
+                        <strong>${item.role}</strong><br>
+                        <span style="color: var(--text-muted);">${item.company} (${item.location})</span>
+                    </td>
+                    <td>${item.fieldLabel}</td>
+                    <td>${item.deadline}</td>
+                    <td>
+                        <select class="status-select" onchange="updateStatus('${id}', this.value)">
+                            <option value="Saved" ${status === 'Saved' ? 'selected' : ''}>Saved</option>
+                            <option value="Applied" ${status === 'Applied' ? 'selected' : ''}>Applied</option>
+                            <option value="Interviewing" ${status === 'Interviewing' ? 'selected' : ''}>Interviewing</option>
+                            <option value="Offered" ${status === 'Offered' ? 'selected' : ''}>Offered</option>
+                        </select>
+                    </td>
+                    <td>
+                        <a href="${item.applyUrl}" target="_blank" class="btn btn-primary" style="padding: 0.35rem 0.7rem; font-size: 0.8rem;">Apply</a>
+                        <button class="btn btn-outline" style="padding: 0.35rem 0.7rem; font-size: 0.8rem; color: #a33838;" onclick="toggleSave('${id}')">Remove</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function toggleSave(id) {
+            if (savedPostings[id]) {
+                delete savedPostings[id];
+            } else {
+                savedPostings[id] = { status: 'Saved' };
+            }
+            localStorage.setItem('intern_tracker_v2', JSON.stringify(savedPostings));
+            applyFiltersAndSort();
+            renderTracker();
+        }
+
+        function updateStatus(id, newStatus) {
+            if (savedPostings[id]) {
+                savedPostings[id].status = newStatus;
+                localStorage.setItem('intern_tracker_v2', JSON.stringify(savedPostings));
+            }
+        }
+
+        function switchTab(tab) {
+            document.getElementById('nav-find').classList.remove('active');
+            document.getElementById('nav-tracker').classList.remove('active');
+            document.getElementById('tab-find').style.display = 'none';
+            document.getElementById('tab-tracker').style.display = 'none';
+
+            if (tab === 'find') {
+                document.getElementById('nav-find').classList.add('active');
+                document.getElementById('tab-find').style.display = 'block';
+            } else {
+                document.getElementById('nav-tracker').classList.add('active');
+                document.getElementById('tab-tracker').style.display = 'block';
+                renderTracker();
+            }
+        }
+
+        // Initial Load
+        applyFiltersAndSort();
+        renderTracker();
+    </script>
+</body>
+</html>
