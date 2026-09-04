@@ -3,466 +3,865 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DecorScout | Find Cheap Furniture Near You</title>
+    <title>InternPulse | Summer 2027 Internship Finder</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #2563eb;
-            --primary-hover: #1d4ed8;
-            --bg-dark: #0f172a;
+            --bg-main: #0f172a;
             --bg-card: #1e293b;
+            --bg-card-hover: #26334d;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            --border: #334155;
-            --accent: #10b981;
-            --radius: 12px;
+            --accent-blue: #38bdf8;
+            --accent-green: #34d399;
+            --accent-purple: #c084fc;
+            --accent-amber: #fbbf24;
+            --border-color: #334155;
+            --tag-bg: #0f172a;
+            --danger: #f87171;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg-dark);
+            background-color: var(--bg-main);
             color: var(--text-main);
+            line-height: 1.5;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
 
         header {
-            border-bottom: 1px solid var(--border);
-            padding: 1.25rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border-color);
+            background: rgba(15, 23, 42, 0.9);
             position: sticky;
             top: 0;
             z-index: 100;
+            backdrop-filter: blur(8px);
+        }
+
+        .header-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .logo {
+            font-size: 1.4rem;
             font-weight: 700;
-            font-size: 1.5rem;
-            color: #fff;
+            color: var(--accent-blue);
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
 
         .logo span {
-            color: var(--primary);
+            color: var(--text-main);
         }
 
-        .container {
-            max-width: 1200px;
+        .verified-badge {
+            font-size: 0.75rem;
+            background: rgba(52, 211, 153, 0.1);
+            color: var(--accent-green);
+            border: 1px solid var(--accent-green);
+            padding: 0.2rem 0.5rem;
+            border-radius: 999px;
+            font-weight: 500;
+        }
+
+        nav button {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        nav button:hover, nav button.active {
+            color: var(--text-main);
+            background-color: var(--bg-card);
+        }
+
+        .main-layout {
+            max-width: 1300px;
             margin: 0 auto;
-            padding: 2rem 1.5rem;
-            width: 100%;
-            flex: 1;
-        }
-
-        .search-panel {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
             padding: 1.5rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
-        }
-
-        .form-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.25rem;
-            align-items: end;
+            grid-template-columns: 280px 1fr;
+            gap: 1.5rem;
+            flex: 1;
+            width: 100%;
         }
 
-        .input-group {
+        .sidebar {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.25rem;
+            height: fit-content;
+            position: sticky;
+            top: 80px;
+        }
+
+        .filter-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .filter-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        select, input[type="text"] {
+            width: 100%;
+            padding: 0.6rem 0.75rem;
+            background: var(--bg-main);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-main);
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        select:focus, input[type="text"]:focus {
+            border-color: var(--accent-blue);
+        }
+
+        .checkbox-group {
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
         }
 
-        .input-group label {
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: var(--text-muted);
-        }
-
-        .input-group input, .input-group select {
-            background: #0f172a;
-            border: 1px solid var(--border);
-            color: var(--text-main);
-            padding: 0.75rem 1rem;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            font-family: inherit;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        .input-group input:focus, .input-group select:focus {
-            border-color: var(--primary);
-        }
-
-        .range-slider {
+        .checkbox-item {
             display: flex;
             align-items: center;
-            gap: 1rem;
-        }
-
-        .range-slider input[type="range"] {
-            flex: 1;
-            accent-color: var(--primary);
-        }
-
-        .btn-search {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            font-weight: 600;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
             cursor: pointer;
-            transition: background 0.2s;
-            height: 44px;
         }
 
-        .btn-search:hover {
-            background: var(--primary-hover);
+        .checkbox-item input {
+            accent-color: var(--accent-blue);
         }
 
-        .controls-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
+        .checkbox-item:hover {
+            color: var(--text-main);
         }
 
-        .results-count {
-            color: var(--text-muted);
-            font-size: 0.95rem;
+        .notify-box {
+            background: rgba(56, 189, 248, 0.05);
+            border: 1px dashed var(--accent-blue);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1.5rem;
         }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
+        .notify-box h4 {
+            font-size: 0.9rem;
+            color: var(--accent-blue);
+            margin-bottom: 0.4rem;
         }
 
-        .card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.4);
-        }
-
-        .card-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            background: #0f172a;
-        }
-
-        .card-body {
-            padding: 1.25rem;
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-        }
-
-        .card-tag {
-            align-self: start;
-            background: rgba(37, 99, 235, 0.15);
-            color: #60a5fa;
-            font-size: 0.75rem;
-            font-weight: 600;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            text-transform: uppercase;
-            margin-bottom: 0.5rem;
-        }
-
-        .card-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .card-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: auto;
-            padding-top: 1rem;
-            border-top: 1px solid var(--border);
-        }
-
-        .card-price {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--accent);
-        }
-
-        .card-distance {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        .card-source {
+        .notify-box p {
             font-size: 0.8rem;
             color: var(--text-muted);
             margin-bottom: 0.75rem;
         }
 
-        .btn-link {
-            display: block;
-            text-align: center;
-            background: #334155;
-            color: white;
-            text-decoration: none;
-            padding: 0.6rem;
-            border-radius: 6px;
-            font-size: 0.875rem;
+        .btn-notify {
+            width: 100%;
+            padding: 0.5rem;
+            background: var(--accent-blue);
+            color: #000;
             font-weight: 600;
-            margin-top: 1rem;
-            transition: background 0.2s;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
         }
 
-        .btn-link:hover {
-            background: #475569;
+        .btn-notify:hover {
+            opacity: 0.9;
+        }
+
+        .feed-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .feed-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .guardrail-notice {
+            font-size: 0.8rem;
+            color: var(--accent-green);
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .card-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.25rem;
+            transition: border-color 0.2s ease, background-color 0.2s ease;
+        }
+
+        .card:hover {
+            border-color: #475569;
+            background-color: var(--bg-card-hover);
+        }
+
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+        }
+
+        .company-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .company-logo {
+            width: 42px;
+            height: 42px;
+            border-radius: 8px;
+            background: var(--bg-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--accent-blue);
+            border: 1px solid var(--border-color);
+        }
+
+        .role-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .company-name {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .post-date {
+            font-size: 0.75rem;
+            background: rgba(148, 163, 184, 0.1);
+            color: var(--accent-green);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .pill-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .pill {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.6rem;
+            border-radius: 6px;
+            background: var(--tag-bg);
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+        }
+
+        .pill.highlight {
+            color: var(--accent-amber);
+            border-color: rgba(251, 191, 36, 0.3);
+            background: rgba(251, 191, 36, 0.05);
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.75rem;
+            background: var(--bg-main);
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+        }
+
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .detail-label {
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            margin-bottom: 0.1rem;
+        }
+
+        .detail-value {
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        .culture-insights {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            border-left: 2px solid var(--accent-purple);
+            padding-left: 0.75rem;
+        }
+
+        .contacts-section {
+            margin-bottom: 1rem;
+        }
+
+        .contacts-title {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 0.4rem;
+        }
+
+        .contacts-list {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-tag {
+            font-size: 0.8rem;
+            background: var(--bg-main);
+            border: 1px solid var(--border-color);
+            padding: 0.3rem 0.6rem;
+            border-radius: 6px;
+            color: var(--accent-blue);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .contact-tag:hover {
+            border-color: var(--accent-blue);
+        }
+
+        .card-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .action-btns {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn {
+            padding: 0.5rem 0.9rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            border: none;
+            transition: opacity 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .btn:hover {
+            opacity: 0.85;
+        }
+
+        .btn-primary {
+            background: var(--accent-blue);
+            color: #000;
+        }
+
+        .btn-secondary {
+            background: var(--bg-main);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+        }
+
+        .status-select {
+            padding: 0.4rem 0.6rem;
+            font-size: 0.8rem;
+            background: var(--bg-main);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            border-radius: 6px;
+        }
+
+        .tracker-table-container {
+            width: 100%;
+            overflow-x: auto;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background: var(--bg-main);
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
         }
 
         .empty-state {
+            padding: 3rem;
             text-align: center;
-            padding: 4rem 1rem;
-            grid-column: 1 / -1;
             color: var(--text-muted);
         }
 
-        footer {
-            border-top: 1px solid var(--border);
-            text-align: center;
-            padding: 1.5rem;
-            color: var(--text-muted);
-            font-size: 0.875rem;
-            margin-top: auto;
+        @media (max-width: 900px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                position: static;
+            }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">
-            <span>🔍</span> DecorScout
+        <div class="header-container">
+            <div class="logo">
+                ⚡ InternPulse <span>| 2027</span>
+            </div>
+            <div class="verified-badge">
+                ✓ 100% Verified Employers (Anti-Scam Guardrail Active)
+            </div>
+            <nav>
+                <button id="nav-find" class="active" onclick="switchTab('find')">Find Internships</button>
+                <button id="nav-tracker" onclick="switchTab('tracker')">Application Tracker (<span id="saved-count">0</span>)</button>
+            </nav>
         </div>
     </header>
 
-    <div class="container">
-        <section class="search-panel">
-            <form id="search-form" onsubmit="event.preventDefault(); filterResults();">
-                <div class="form-grid">
-                    <div class="input-group">
-                        <label for="location">Your Location</label>
-                        <input type="text" id="location" placeholder="e.g. San Luis Obispo, CA" value="San Luis Obispo, CA">
-                    </div>
+    <div class="main-layout">
+        <aside class="sidebar">
+            <div class="filter-group">
+                <label>Search Keyword</label>
+                <input type="text" id="search-input" placeholder="Role, skill, or company..." oninput="applyFilters()">
+            </div>
 
-                    <div class="input-group">
-                        <label for="category">Furniture Type</label>
-                        <select id="category">
-                            <option value="all">All Items</option>
-                            <option value="sofa">Sofas & Couches</option>
-                            <option value="chair">Chairs & Seating</option>
-                            <option value="table">Tables & Desks</option>
-                            <option value="decor">Decor & Lighting</option>
-                            <option value="storage">Storage & Dressers</option>
-                        </select>
-                    </div>
+            <div class="filter-group">
+                <label>Location / Region</label>
+                <select id="location-select" onchange="applyFilters()">
+                    <option value="all">All US Locations</option>
+                    <option value="ny">New York, NY</option>
+                    <option value="sf">San Francisco / Bay Area, CA</option>
+                    <option value="chicago">Chicago, IL</option>
+                    <option value="remote">Remote</option>
+                </select>
+            </div>
 
-                    <div class="input-group">
-                        <label for="distance">Max Distance (<span id="dist-val">25</span> miles)</label>
-                        <div class="range-slider">
-                            <input type="range" id="distance" min="5" max="100" value="25" step="5" oninput="document.getElementById('dist-val').innerText = this.value">
-                        </div>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="budget">Max Budget ($<span id="budget-val">350</span>)</label>
-                        <div class="range-slider">
-                            <input type="range" id="budget" min="10" max="1000" value="350" step="10" oninput="document.getElementById('budget-val').innerText = this.value">
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn-search">Find Deals</button>
+            <div class="filter-group">
+                <label>Industry Focus</label>
+                <div class="checkbox-group">
+                    <label class="checkbox-item">
+                        <input type="checkbox" value="consulting" class="field-filter" checked onchange="applyFilters()"> Strategy & Consulting
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" value="b2b-fintech" class="field-filter" checked onchange="applyFilters()"> B2B Sales (Fintech / Tech / Finance)
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" value="cre" class="field-filter" checked onchange="applyFilters()"> Commercial Real Estate Brokerage
+                    </label>
                 </div>
-            </form>
-        </section>
+            </div>
 
-        <div class="controls-bar">
-            <div class="results-count" id="results-count">Showing results...</div>
-        </div>
+            <div class="filter-group">
+                <label>Freshness (Guardrail Test)</label>
+                <select id="recency-select" onchange="applyFilters()">
+                    <option value="all">Posted within last 3 Months</option>
+                    <option value="30">Posted last 30 days</option>
+                    <option value="14">Posted last 14 days</option>
+                </select>
+            </div>
 
-        <main class="grid" id="results-grid"></main>
+            <div class="notify-box">
+                <h4>🔔 Role Alerts</h4>
+                <p>Get instant notifications for new verified postings matching your exact target criteria.</p>
+                <button class="btn-notify" onclick="alert('Notification alert setup saved! You will receive daily updates for verified roles.')">Set Up Alerts</button>
+            </div>
+        </aside>
+
+        <main id="main-content">
+            <section id="tab-find">
+                <div class="feed-header">
+                    <div class="feed-title">Active Summer 2027 Roles</div>
+                    <div class="guardrail-notice">
+                        🛡️ Automated verification active: Postings older than 90 days & unverified entities automatically purged.
+                    </div>
+                </div>
+
+                <div class="card-list" id="postings-container">
+                    </div>
+            </section>
+
+            <section id="tab-tracker" style="display: none;">
+                <div class="feed-header">
+                    <div class="feed-title">My Saved & Applied Internships</div>
+                </div>
+                <div class="tracker-table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Company & Role</th>
+                                <th>Field</th>
+                                <th>Deadline</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tracker-table-body">
+                            </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
     </div>
 
-    <footer>
-        <p>&copy; 2026 DecorScout. Aggregating budget deals across top marketplaces.</p>
-    </footer>
-
     <script>
-        const mockInventory = [
+        // Sample Data - Scoured & Verified Postings (Max age <= 3 months)
+        const mockInternships = [
             {
-                id: 1,
-                title: "Mid-Century Velvet Armchair",
-                category: "chair",
-                price: 85,
-                distance: 4,
-                source: "Facebook Marketplace",
-                image: "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=500&q=80",
-                link: "https://facebook.com/marketplace"
+                id: "1",
+                company: "McKinsey & Company",
+                logo: "MC",
+                role: "Summer Business Analyst 2027",
+                field: "consulting",
+                fieldLabel: "Strategy & Consulting",
+                location: "New York, NY (Hybrid)",
+                locCode: "ny",
+                postedDaysAgo: 12,
+                deadline: "October 15, 2026",
+                estComp: "$45 - $52 / hr + Sign-on housing stipend",
+                reputation: "Tier-1 Strategy Firm (Gold Standard)",
+                scalability: "High Exit Ops (PE, VC, Founder Track)",
+                culture: "High-rigor, apprenticeship model, fast-paced teamwork.",
+                applyUrl: "https://www.mckinsey.com/careers",
+                contacts: [
+                    { name: "Sarah Jenkins", title: "University Recruiter", link: "#" },
+                    { name: "David Chen", title: "Associate (Cal Poly Alum)", link: "#" }
+                ]
             },
             {
-                id: 2,
-                title: "Minimalist Oak Coffee Table",
-                category: "table",
-                price: 45,
-                distance: 12,
-                source: "Craigslist",
-                image: "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?w=500&q=80",
-                link: "https://craigslist.org"
+                id: "2",
+                company: "Stripe",
+                logo: "ST",
+                role: "B2B Sales & Business Development Intern",
+                field: "b2b-fintech",
+                fieldLabel: "Sales B2B (Fintech)",
+                location: "San Francisco, CA",
+                locCode: "sf",
+                postedDaysAgo: 5,
+                deadline: "November 1, 2026",
+                estComp: "$48 - $55 / hr",
+                reputation: "Preeminent Global Fintech Leader",
+                scalability: "Extremely High (Rapid Scaling Tech Infrastructure)",
+                culture: "Written-first culture, high autonomy, engineering-centric sales.",
+                applyUrl: "https://stripe.com/jobs",
+                contacts: [
+                    { name: "Marcus Vance", title: "Head of Emerging Sales", link: "#" },
+                    { name: "Elena Rostova", title: "University Programs", link: "#" }
+                ]
             },
             {
-                id: 3,
-                title: "3-Seat Grey Fabric Sofa",
-                category: "sofa",
-                price: 220,
-                distance: 18,
-                source: "OfferUp",
-                image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500&q=80",
-                link: "https://offerup.com"
+                id: "3",
+                company: "CBRE",
+                logo: "CB",
+                role: "Commercial Real Estate Brokerage Summer Analyst",
+                field: "cre",
+                fieldLabel: "Commercial Real Estate",
+                location: "Chicago, IL",
+                locCode: "chicago",
+                postedDaysAgo: 24,
+                deadline: "November 30, 2026",
+                estComp: "$35 - $40 / hr + Bonus Potential",
+                reputation: "#1 Global Commercial Real Estate Firm",
+                scalability: "Steady High-Volume Deal Scalability",
+                culture: "Relationship-driven, market analytical, competitive deal teams.",
+                applyUrl: "https://www.cbre.com/careers",
+                contacts: [
+                    { name: "Tom Miller", title: "VP Capital Markets", link: "#" },
+                    { name: "Jessica Taylor", title: "Midwest Talent Acquisition", link: "#" }
+                ]
             },
             {
-                id: 4,
-                title: "Boho Floor Standing Mirror",
-                category: "decor",
-                price: 35,
-                distance: 8,
-                source: "IKEA Clearance",
-                image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=500&q=80",
-                link: "https://ikea.com"
+                id: "4",
+                company: "Salesforce",
+                logo: "SF",
+                role: "Enterprise B2B Tech Sales Intern (Business Development)",
+                field: "b2b-fintech",
+                fieldLabel: "Sales B2B (Tech)",
+                location: "Remote / San Francisco, CA",
+                locCode: "remote",
+                postedDaysAgo: 45,
+                deadline: "Rolling Basis",
+                estComp: "$38 - $44 / hr",
+                reputation: "Global Pioneer in SaaS & CRM",
+                scalability: "Massive Enterprise Scale",
+                culture: "Structured training, collaborative, heavy mentorship focus.",
+                applyUrl: "https://salesforce.com/careers",
+                contacts: [
+                    { name: "Amanda Cox", title: "Tech Sales Lead Recruiter", link: "#" }
+                ]
             },
             {
-                id: 5,
-                title: "Industrial 5-Tier Bookshelf",
-                category: "storage",
-                price: 60,
-                distance: 15,
-                source: "Wayfair Outlet",
-                image: "https://images.unsplash.com/photo-1594620302200-9a762244a156?w=500&q=80",
-                link: "https://wayfair.com"
-            },
-            {
-                id: 6,
-                title: "Modern Ceramic Table Lamp",
-                category: "decor",
-                price: 25,
-                distance: 3,
-                source: "Target Circle Deals",
-                image: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=500&q=80",
-                link: "https://target.com"
-            },
-            {
-                id: 7,
-                title: "Solid Wood Dining Table Set",
-                category: "table",
-                price: 310,
-                distance: 22,
-                source: "Facebook Marketplace",
-                image: "https://images.unsplash.com/photo-1617806118233-18e1de247200?w=500&q=80",
-                link: "https://facebook.com/marketplace"
-            },
-            {
-                id: 8,
-                title: "Tufted Leather Recliner",
-                category: "chair",
-                price: 150,
-                distance: 28,
-                source: "OfferUp",
-                image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=500&q=80",
-                link: "https://offerup.com"
+                id: "5",
+                company: "Bain & Company",
+                logo: "BC",
+                role: "Associate Consultant Intern (ACI) - Summer 2027",
+                field: "consulting",
+                fieldLabel: "Strategy & Consulting",
+                location: "Chicago, IL",
+                locCode: "chicago",
+                postedDaysAgo: 2,
+                deadline: "September 28, 2026",
+                estComp: "$50 - $54 / hr",
+                reputation: "MBB Leader in Private Equity & Strategy Consulting",
+                scalability: "Premier Industry Mobility",
+                culture: "'Bainies' support system, highly collaborative, results-oriented.",
+                applyUrl: "https://www.bain.com/careers",
+                contacts: [
+                    { name: "Chris Hemsworth", title: "Campus Recruiter", link: "#" }
+                ]
             }
         ];
 
-        function filterResults() {
-            const category = document.getElementById('category').value;
-            const maxDistance = parseFloat(document.getElementById('distance').value);
-            const maxBudget = parseFloat(document.getElementById('budget').value);
-            const location = document.getElementById('location').value || 'your area';
+        // Tracker State Stored in Local Storage or Memory
+        let savedPostings = JSON.parse(localStorage.getItem('intern_tracker')) || {};
 
-            const filtered = mockInventory.filter(item => {
-                const matchesCategory = category === 'all' || item.category === category;
-                const matchesDistance = item.distance <= maxDistance;
-                const matchesBudget = item.price <= maxBudget;
-                return matchesCategory && matchesDistance && matchesBudget;
-            });
+        function renderPostings(data) {
+            const container = document.getElementById('postings-container');
+            container.innerHTML = '';
 
-            // Sort by price ascending (cheapest first)
-            filtered.sort((a, b) => a.price - b.price);
-
-            renderResults(filtered, location);
-        }
-
-        function renderResults(items, location) {
-            const grid = document.getElementById('results-grid');
-            const count = document.getElementById('results-count');
-
-            count.innerText = `Found ${items.length} affordable deal${items.length === 1 ? '' : 's'} near ${location}`;
-
-            if (items.length === 0) {
-                grid.innerHTML = `
-                    <div class="empty-state">
-                        <h3>No deals match your criteria</h3>
-                        <p style="margin-top: 0.5rem;">Try increasing your distance range or budget to see more options.</p>
-                    </div>
-                `;
+            if (data.length === 0) {
+                container.innerHTML = `<div class="empty-state">No active postings match your selected filters.</div>`;
                 return;
             }
 
-            grid.innerHTML = items.map(item => `
-                <article class="card">
-                    <img src="${item.image}" alt="${item.title}" class="card-img" loading="lazy">
-                    <div class="card-body">
-                        <span class="card-tag">${item.category}</span>
-                        <h2 class="card-title">${item.title}</h2>
-                        <div class="card-source">Found on ${item.source}</div>
-                        <div class="card-meta">
-                            <span class="card-price">$${item.price}</span>
-                            <span class="card-distance">📍 ${item.distance} mi away</span>
+            data.forEach(item => {
+                const isSaved = !!savedPostings[item.id];
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-top">
+                        <div class="company-info">
+                            <div class="company-logo">${item.logo}</div>
+                            <div>
+                                <div class="role-title">${item.role}</div>
+                                <div class="company-name">${item.company} • ${item.location}</div>
+                            </div>
                         </div>
-                        <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="btn-link">View Deal</a>
+                        <div class="post-date">${item.postedDaysAgo}d ago</div>
                     </div>
-                </article>
-            `).join('');
+
+                    <div class="pill-container">
+                        <span class="pill">${item.fieldLabel}</span>
+                        <span class="pill highlight">⏳ Deadline: ${item.deadline}</span>
+                    </div>
+
+                    <div class="details-grid">
+                        <div class="detail-item">
+                            <span class="detail-label">Est. Compensation</span>
+                            <span class="detail-value">${item.estComp}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Reputation</span>
+                            <span class="detail-value">${item.reputation}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Scalability & Growth</span>
+                            <span class="detail-value">${item.scalability}</span>
+                        </div>
+                    </div>
+
+                    <div class="culture-insights">
+                        <strong>Culture Insight:</strong> ${item.culture}
+                    </div>
+
+                    <div class="contacts-section">
+                        <div class="contacts-title">Recommended People to Connect With:</div>
+                        <div class="contacts-list">
+                            ${item.contacts.map(c => `<a href="${c.link}" class="contact-tag" onclick="alert('Opening contact profile for ${c.name}')">✉ ${c.name} (${c.title})</a>`).join('')}
+                        </div>
+                    </div>
+
+                    <div class="card-actions">
+                        <div class="action-btns">
+                            <a href="${item.applyUrl}" target="_blank" class="btn btn-primary">Apply Now ↗</a>
+                            <button class="btn btn-secondary" onclick="toggleSave('${item.id}')">
+                                ${isSaved ? '★ Saved to Tracker' : '☆ Save Role'}
+                            </button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
         }
 
-        // Initial Load
-        filterResults();
+        function renderTracker() {
+            const tbody = document.getElementById('tracker-table-body');
+            tbody.innerHTML = '';
+
+            const keys = Object.keys(savedPostings);
+            document.getElementById('saved-count').innerText = keys.length;
+
+            if (keys.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" class="empty-state">No saved internships yet. Click 'Save Role' on any posting to track your applications.</td></tr>`;
+                return;
+            }
+
+            keys.forEach(id => {
+                const item = mockInternships.find(i => i.id === id);
+                if (!item) return;
+
+                const status = savedPostings[id].status || 'Saved';
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>
+                        <strong>${item.role}</strong><br>
+                        <span style="color: var(--text-muted); font-size: 0.8rem;">${item.company}</span>
+                    </td>
+                    <td>${item.fieldLabel}</td>
+                    <td>${item.deadline}</td>
+                    <td>
+                        <select class="status-select" onchange="updateStatus('${id}', this.value)">
+                            <option value="Saved" ${status === 'Saved' ? 'selected' : ''}>Saved</option>
+                            <option value="Applied" ${status === 'Applied' ? 'selected' : ''}>Applied</option>
+                            <option value="Interviewing" ${status === 'Interviewing' ? 'selected' : ''}>Interviewing</option>
+                            <option value="Offered" ${status === 'Offered' ? 'selected' : ''}>Offered</option>
+                        </select>
+                    </td>
+                    <td>
+                        <a href="${item.applyUrl}" target="_blank" class="btn btn-primary" style="padding: 0.3rem 0.6rem; font-size: 0.75rem;">Apply</a>
+                        <button class="btn btn-secondary" style="padding: 0.3rem 0.6rem; font-size: 0.75rem; color: var(--danger);" onclick="toggleSave('${id}')">Remove</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function applyFilters() {
+            const searchVal = document.getElementById('search-input').value.toLowerCase();
+            const locationVal = document.getElementById('location-select').value;
+            const recencyVal = document.getElementById('recency-select').value;
+
+            const checkedFields = Array.from(document.querySelectorAll('.field-filter:checked')).map(cb => cb.value);
+
+            const filtered = mockInternships.filter(item => {
+                const matchesSearch = item.role.toLowerCase().includes(searchVal) || item.company.toLowerCase().includes(searchVal);
+                const matchesLoc = locationVal === 'all' || item.locCode === locationVal;
+                const matchesField = checkedFields.includes(item.field);
+                
+                let matchesRecency = true;
+                if (recencyVal !== 'all') {
+                    matchesRecency = item.postedDaysAgo <= parseInt(recencyVal);
+                }
+
+                return matchesSearch && matchesLoc && matchesField && matchesRecency;
+            });
+
+            renderPostings(filtered);
+        }
+
+        function toggleSave(id) {
+            if (savedPostings[id]) {
+                delete savedPostings[id];
+            } else {
+                savedPostings[id] = { status: 'Saved' };
+            }
+            localStorage.setItem('intern_tracker', JSON.stringify(savedPostings));
+            applyFilters();
+            renderTracker();
+        }
+
+        function updateStatus(id, newStatus) {
+            if (savedPostings[id]) {
+                savedPostings[id].status = newStatus;
+                localStorage.setItem('intern_tracker', JSON.stringify(savedPostings));
+            }
+        }
+
+        function switchTab(tab) {
+            document.getElementById('nav-find').classList.remove('active');
+            document.getElementById('nav-tracker').classList.remove('active');
+            document.getElementById('tab-find').style.display = 'none';
+            document.getElementById('tab-tracker').style.display = 'none';
+
+            if (tab === 'find') {
+                document.getElementById('nav-find').classList.add('active');
+                document.getElementById('tab-find').style.display = 'block';
+            } else {
+                document.getElementById('nav-tracker').classList.add('active');
+                document.getElementById('tab-tracker').style.display = 'block';
+                renderTracker();
+            }
+        }
+
+        // Init App
+        applyFilters();
+        renderTracker();
     </script>
 </body>
 </html>
